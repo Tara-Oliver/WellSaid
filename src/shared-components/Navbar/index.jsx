@@ -143,7 +143,7 @@ const Navbar = () => {
 						</div>
 					</div>
 
-					<div className="relative mx-2">
+					{/* <div className="relative mx-2">
 						<button
 							className="flex items-center"
 							onMouseEnter={() => {
@@ -161,7 +161,7 @@ const Navbar = () => {
 								my account
 							</div>
 						)}
-					</div>
+					</div> */}
 
 					<button
 						className="flex sm:hidden text-4xl"

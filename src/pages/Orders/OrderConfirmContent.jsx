@@ -20,8 +20,8 @@ const OrderConfirmContent = ({ order }) => {
 
 	return (
 		<>
-			<div className="flex md:flex-row flex-col md:justify-between  w-full items-center gap-y-2">
-				<div className="capitalize">
+			<div className="flex md:flex-row flex-col md:justify-between w-full items-center gap-y-2">
+				<div className="capitalize w-full md:w-auto md:text-left text-center">
 					<p className="font-playfair font-semibold text-lg capitalize">
 						Delivery Address
 					</p>
@@ -34,8 +34,8 @@ const OrderConfirmContent = ({ order }) => {
 					</p>
 				</div>
 
-				<div>
-					<p className="font-playfair font-semibold text-lg capitalize">
+				<div className="border-2 border-red-900 capitalize w-full md:w-auto md:text-left text-center">
+					<p className="font-playfair font-semibold text-lg ">
 						delivery options
 					</p>
 					<p>Ordered on {order.order_date}</p>

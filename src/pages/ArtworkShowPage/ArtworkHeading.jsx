@@ -12,7 +12,9 @@ const ArtworkHeading = ({ artwork, selectedPrice }) => {
 			<p className="pl-px my-2 italic text-fontColor text-lg text-wrap whitespace-pre-line">
 				{artwork.quote}
 			</p>
-			<p className="text-fontColor">Category: {artwork.category}</p>
+			<p className="text-fontColor mb-2 md:mb-0">
+				Category: {artwork.category}
+			</p>
 		</>
 	);
 };

@@ -28,13 +28,12 @@ const ArtworkInfoSection = ({ artwork }) => {
 							}
 						}}
 						className={clsx(
-							"fav-swiper-button-prev text-4xl",
+							"fav-swiper-button-prev md:text-4xl text-2xl mr-2 md:mr-0",
 							imageIdx > 0 ? "text-fontColor" : "text-fontColor/20 disabled"
 						)}></button>
-
 					<Zoom>
 						<img
-							className="w-[380px] h-[420px] object-cover mx-4"
+							className="w-[380px] h-[420px] object-cover md:mx-4 mx-0 "
 							src={artwork.images[imageIdx].src}
 							loading="lazy"
 						/>{" "}
@@ -46,7 +45,7 @@ const ArtworkInfoSection = ({ artwork }) => {
 							}
 						}}
 						className={clsx(
-							"fav-swiper-button-next text-4xl",
+							"fav-swiper-button-next md:text-4xl text-2xl  ml-2 md:ml-0",
 							imageIdx < artwork.images.length - 1
 								? "text-fontColor"
 								: "text-fontColor/20 disabled"
@@ -99,7 +98,6 @@ const ArtworkInfoSection = ({ artwork }) => {
 
 				<ArtworkPurchaseOptions
 					artwork={artwork}
-
 					selectedSize={selectedSize}
 					setSelectedSize={setSelectedSize}
 					selectedPrice={selectedPrice}

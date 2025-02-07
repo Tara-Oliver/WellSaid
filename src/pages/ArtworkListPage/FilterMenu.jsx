@@ -24,6 +24,7 @@ const FilterMenu = ({
 							"fa-solid text-xl",
 							showMenu ? "fa-angle-up" : "fa-angle-down"
 						)}></i>
+					<div className="lowercase  flex-1 text-right pr-2">{filterGroup}</div>
 				</div>
 
 				{showMenu && (

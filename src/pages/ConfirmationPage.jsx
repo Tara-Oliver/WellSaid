@@ -14,7 +14,7 @@ const ConfirmationPage = () => {
 			<Navbar />
 			<div className=" min-h-screen bg-bkgrd font-lato">
 				<div className="w-full max-w-8xl py-24 flex flex-col items-center">
-					<div className="flex flex-col justify-center items-center  px-12 w-3/5">
+					<div className="flex flex-col justify-center items-center md:px-12 md:w-3/5 w-full px-4">
 						<div className="bg-primary text-bkgrd text-center font-bold my-10 text-lg p-1">
 							<span className="">Note:</span> This is a demonstration site.
 							Orders placed here are not real.{" "}

@@ -5,7 +5,7 @@ import AnimatedButton from "shared-components/AnimatedButton";
 
 const Featured = () => {
 	return (
-		<div className="flex flex-col md:flex-row justify-between items-center p-8 font-playfair text-fontColor bg-bkgrd relative gap-x-12">
+		<div className="flex flex-col md:flex-row justify-between items-center md:p-8 p-4 font-playfair text-fontColor bg-bkgrd relative gap-x-12">
 			<div className="left text-center md:text-left my-6 md:my-0 z-10">
 				<h3 className="text-6xl  capitalize">featured</h3>
 				<p className="my-6 italic text-wrap font-lato">
@@ -36,7 +36,7 @@ const Featured = () => {
 				</Link>
 			</div>
 
-			<div className="right flex-1 grid grid-cols-3 gap-5">
+			<div className="right flex-1 grid md:grid-cols-3  grid-cols-2 md:gap-5 gap-2">
 				{featured.map((item, idx) => {
 					const imageIdx = getRandomIdx(item.images);
 					return (

@@ -125,7 +125,7 @@ const ArtworkListPage = ({ favorites, handleRemove }) => {
 								</div>
 							</div>
 							<div
-								className={` w-full max-w-sm fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-fontColor text-bkgrd text-center px-4 py-2 transition-transform duration-300 ease-in-out ${
+								className={`w-full max-w-sm fixed bottom-5 left-1/2 transform -translate-x-1/2 bg-fontColor text-bkgrd text-center px-4 py-2 transition-transform duration-300 ease-in-out ${
 									showToast
 										? "translate-y-0 opacity-100"
 										: "translate-y-5 opacity-0"
