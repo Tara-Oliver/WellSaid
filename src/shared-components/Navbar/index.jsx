@@ -30,7 +30,6 @@ const Navbar = () => {
 		}
 	}
 
-	console.log("ti", totalItems, "-", "cart", cart.length);
 	return (
 		<>
 			<nav

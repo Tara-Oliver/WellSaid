@@ -32,14 +32,11 @@ const app = express();
 const port = process.env.PORT || 3000;
 const allowedOrigins = process.env.CORS_ALLOWED_ORIGINS?.split(",") || [];
 
-
-app.listen(port, () => {
+app.listen(port, "0.0.0.0", () => {
 	console.log(`Server running on port ${port}`);
 });
 
-
 app.use(express.json());
-
 
 app.use(
 	cors({
@@ -79,7 +76,6 @@ app.post("/users", async (req, res) => {
 		return res.status(400).json(emptyErrors);
 	}
 
-
 	if (username.length < 4) {
 		return res.status(400).json({
 			username: "Username must be at least 4 characters",
@@ -114,7 +110,6 @@ app.post("/users", async (req, res) => {
 			});
 		}
 
-
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		const newUser = {
@@ -123,18 +118,15 @@ app.post("/users", async (req, res) => {
 			user_id: uuidv4(),
 		};
 
-
 		await pool.query(
 			"INSERT INTO users (username, password, user_id) VALUES ($1, $2, $3)",
 			[newUser.username, newUser.password, newUser.user_id]
 		);
 
-
 		const payload = {
 			user_id: newUser.user_id,
 			username: newUser.username,
 		};
-
 
 		const sessionToken = jwt.sign(payload, process.env.JWT_SECRET, {
 			expiresIn: process.env.JWT_EXPIRATION,
@@ -161,7 +153,6 @@ app.post("/users/session", async (req, res) => {
 	}
 
 	try {
-
 		const query = "SELECT * FROM users WHERE username = $1";
 		const { rows } = await pool.query(query, [username]);
 
@@ -172,9 +163,7 @@ app.post("/users/session", async (req, res) => {
 			});
 		}
 
-
 		const user = rows[0];
-
 
 		const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
@@ -185,12 +174,10 @@ app.post("/users/session", async (req, res) => {
 			});
 		}
 
-
 		const payload = {
 			user_id: user.user_id,
 			username: user.username,
 		};
-
 
 		const sessionToken = jwt.sign(payload, process.env.JWT_SECRET, {
 			expiresIn: process.env.JWT_EXPIRATION,
@@ -211,7 +198,6 @@ app.get("/artwork", async (req, res) => {
 
 		const artwork = result.rows;
 
-
 		for (let i = artwork.length - 1; i > 0; i--) {
 			const j = Math.floor(Math.random() * (i + 1));
 			[artwork[i], artwork[j]] = [artwork[j], artwork[i]];
@@ -231,17 +217,14 @@ app.get("/artwork/:artwork_id", async (req, res) => {
 	const { artwork_id } = req.params;
 
 	try {
-
 		const result = await pool.query(
 			"SELECT * FROM artwork WHERE artwork_id = $1",
 			[artwork_id]
 		);
 
-
 		if (result.rows.length === 0) {
 			return res.status(404).json({ error: "Artwork not found" });
 		}
-
 
 		res.status(200).json(result.rows[0]);
 	} catch (error) {
@@ -280,7 +263,6 @@ app.get("/cart", authenticateToken, async (req, res) => {
 			return res.status(200).json([]);
 		}
 
-
 		const cart = result.rows;
 
 		res.status(200).json(cart);
@@ -313,14 +295,12 @@ app.post("/cart/artwork/:artwork_id", authenticateToken, async (req, res) => {
 		);
 
 		if (existingItem.rows.length > 0) {
-
 			const updatedItem = await pool.query(
 				"UPDATE cart SET quantity = quantity + $1 WHERE cart_item_id = $2 RETURNING *",
 				[quantity, existingItem.rows[0].cart_item_id]
 			);
 			return res.status(200).json(updatedItem.rows[0]);
 		} else {
-
 			const newItem = await pool.query(
 				"INSERT INTO cart (cart_item_id, user_id, artwork_id, quantity, price_per_unit,image_src,frame_color,colors,artwork_name,size,created_at) VALUES ( $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, NOW()) RETURNING *",
 				[
@@ -357,12 +337,10 @@ app.put("/cart/:cart_item_id", authenticateToken, async (req, res) => {
 	try {
 		const user_id = req.user.user_id;
 
-
 		const duplicateItem = await pool.query(
 			"SELECT * FROM cart WHERE user_id = $1 AND artwork_id = $2 AND size = $3 AND frame_color = $4 AND cart_item_id != $5",
 			[user_id, artwork_id, size, frame_color, cart_item_id]
 		);
-
 
 		if (duplicateItem.rows.length > 0) {
 			return res.status(400).json({
@@ -370,7 +348,6 @@ app.put("/cart/:cart_item_id", authenticateToken, async (req, res) => {
 					"This item with the same size and frame color is already in your cart.",
 			});
 		}
-
 
 		const result = await pool.query(
 			"UPDATE cart SET quantity = $1, frame_color = $2, size = $3, price_per_unit = $4, image_src = $5 WHERE cart_item_id = $6 AND user_id = $7 RETURNING *",
@@ -389,7 +366,6 @@ app.put("/cart/:cart_item_id", authenticateToken, async (req, res) => {
 			return res.status(404).json({ error: "Cart item not found" });
 		}
 
-
 		res.status(200).json(result.rows[0]);
 	} catch (err) {
 		res
@@ -404,7 +380,6 @@ app.delete("/cart/:cart_item_id", authenticateToken, async (req, res) => {
 
 	try {
 		const user_id = req.user.user_id;
-
 
 		const result = await pool.query(
 			"DELETE FROM cart WHERE cart_item_id = $1 AND user_id = $2",
@@ -427,7 +402,6 @@ app.delete("/cart/:cart_item_id", authenticateToken, async (req, res) => {
 app.delete("/cart", authenticateToken, async (req, res) => {
 	try {
 		const user_id = req.user.user_id;
-
 
 		const result = await pool.query("DELETE FROM cart WHERE user_id = $1", [
 			user_id,
@@ -487,12 +461,10 @@ app.post(
 			);
 
 			if (checkResult.rows.length > 0) {
-
 				return res.status(409).json({
 					message: "Artwork is already in favorites.",
 				});
 			}
-
 
 			const insertQuery = `
         INSERT INTO favorite (
@@ -506,12 +478,7 @@ app.post(
           $1, $2, $3, $4, NOW()
         ) RETURNING *;
       `;
-			const insertValues = [
-				uuidv4(),
-				user_id,
-				artwork_id,
-				artwork,
-			];
+			const insertValues = [uuidv4(), user_id, artwork_id, artwork];
 
 			const result = await pool.query(insertQuery, insertValues);
 
@@ -532,7 +499,6 @@ app.delete("/favorite/:artwork_id", authenticateToken, async (req, res) => {
 
 	try {
 		const user_id = req.user.user_id;
-
 
 		const result = await pool.query(
 			"DELETE FROM favorite WHERE artwork_id = $1 AND user_id = $2",
@@ -557,12 +523,9 @@ app.delete("/favorite", authenticateToken, async (req, res) => {
 	try {
 		const user_id = req.user.user_id;
 
-
 		const result = await pool.query("DELETE FROM favorite WHERE user_id = $1", [
 			user_id,
 		]);
-
-
 
 		if (result.rowCount === 0) {
 			return res.status(404).json({ error: "No favorites to delete" });
@@ -581,7 +544,6 @@ app.delete("/favorite", authenticateToken, async (req, res) => {
 
 ////////Add new order///////////////////////////
 app.post("/orders", authenticateToken, async (req, res) => {
-
 	const user_id = req.user.user_id;
 	const {
 		order_item_id,
@@ -607,7 +569,6 @@ app.post("/orders", authenticateToken, async (req, res) => {
 	let emptyFields = {};
 
 	for (let field in req.body) {
-
 		if (req.body[field].length === 0 && field !== "apt") {
 			emptyFields[field] = "This field is required";
 		}
@@ -617,8 +578,6 @@ app.post("/orders", authenticateToken, async (req, res) => {
 	}
 
 	try {
-
-
 		const insertQuery = `
         INSERT INTO orders (
          order_item_id,

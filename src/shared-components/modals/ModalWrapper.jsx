@@ -15,7 +15,7 @@ const ModalWrapper = ({ children, isOpen, handleClose }) => {
 				onClick={(e) => {
 					if (e.target === backgroundRef.current) {
 						handleClose();
-						console.log("modalClosed");
+
 					}
 				}}
 				className="fixed top-0 right-0 w-full h-full bg-black/30 backdrop-blur-sm flex justify-end items-start font-lato z-20">

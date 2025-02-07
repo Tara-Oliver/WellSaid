@@ -72,17 +72,7 @@ const App = () => {
 		);
 	};
 
-	// useEffect(() => {
-	// 	let totalItems = 0;
-	// 	let subtotal = 0;
-	// 	// console.log(cart);
-	// 	if (cart.length !== 0) {
-	// 		for (const item of cart) {
-	// 			totalItems += item.quantity;
-	// 			subtotal += item.quantity * item.price_per_unit;
-	// 		}
-	// 	}
-	// }, [cart]);
+
 
 	return (
 		<SessionContext.Provider

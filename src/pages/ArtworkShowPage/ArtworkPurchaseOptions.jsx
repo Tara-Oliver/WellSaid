@@ -65,8 +65,7 @@ const ArtworkPurchaseOptions = ({
 
 					try {
 						if (res.status === 500) {
-							// console.log(res.status);
-							// console.error("Unexpected error", res);
+
 							setErrors(data);
 						} else {
 							setCartModalOpen(true);
