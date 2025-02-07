@@ -1,8 +1,8 @@
+import pool from "./index.js"; // Import your database connection
+
 // (async () => {
 // 	try {
-// 		await pool.query(
-// 			"ALTER TABLE cart RENAME COLUMN poster_name TO artwork_name;"
-// 		);
+// 		await pool.query("ALTER TABLE orders DROP COLUMN totalitems;");
 // 		console.log("Column isFavorited removed successfully.");
 // 	} catch (error) {
 // 		console.error("Error removing column:", error.message);

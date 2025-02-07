@@ -15,7 +15,7 @@ const CheckoutForm = ({
 }) => {
 	const navigate = useNavigate();
 
-	const { cart } = useContext(CartContext);
+	const { cart, setCart, fetchCart } = useContext(CartContext);
 
 	const date = new Date();
 	let day = date.getDate().toString().padStart(2, "0");
@@ -37,7 +37,6 @@ const CheckoutForm = ({
 			...prevData,
 			[name]: value,
 		}));
-
 	};
 
 	const deliveryFields = [
@@ -205,7 +204,6 @@ const CheckoutForm = ({
 			total: totalCost,
 			shipping_fee: shippingFee,
 			subtotal,
-
 		}));
 	}, [totalCost, shippingFee, subtotal]);
 
@@ -221,8 +219,11 @@ const CheckoutForm = ({
 					if (res.status === 400) {
 						setErrors(data);
 					} else if (res.status === 201) {
-						setFormData({});
+						setCart([]);
 						await emptyCart();
+						fetchCart();
+						setFormData({});
+						setErrors({});
 						navigate(`/order-confirmation/${formData.order_item_id}`, {
 							state: {
 								order: formData,
@@ -312,14 +313,11 @@ const CheckoutForm = ({
 								required
 								defaultChecked={item.name === "Standard"}
 								onChange={(e) => {
-
 									const cost =
 										subtotal >= 109.99 && item.name === "Standard"
 											? 0.0
 											: parseFloat(e.target.value);
 									setShippingFee(cost);
-
-
 								}}
 							/>
 							<span className="absolute bg-primary w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-100 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
@@ -395,17 +393,14 @@ const CheckoutForm = ({
 															.replace(/(.{4})/g, "$1 ")
 															.trim();
 
-
 														setFormData((prevData) => ({
 															...prevData,
 															[name]: formattedValue,
 														}));
-
 													}}
 													name={field.name}
 													maxLength={field.max}
 													value={formData[field.name]}
-
 												/>
 												<div className="text-red-700 italic text-sm">
 													{errors[field.name]}

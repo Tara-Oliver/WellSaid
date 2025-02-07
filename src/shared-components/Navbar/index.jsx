@@ -10,7 +10,6 @@ import clsx from "clsx";
 import UserAccountModal from "shared-components/modals/UserAccountModal";
 
 const Navbar = () => {
-
 	const { cart, cartModalOpen, setCartModalOpen } = useContext(CartContext);
 	const [shopOpen, setShopOpen] = useState(false);
 	const [ordersOpen, setOrdersOpen] = useState(false);
@@ -31,6 +30,7 @@ const Navbar = () => {
 		}
 	}
 
+	console.log("ti", totalItems, "-", "cart", cart.length);
 	return (
 		<>
 			<nav
@@ -105,7 +105,7 @@ const Navbar = () => {
 								}}>
 								<span
 									className={clsx(
-										"flex justify-center items-center absolute  bg-secondary text-bkgrd rounded-full font-semibold text-sm  font-playfair",
+										"flex justify-center items-center absolute bg-secondary text-bkgrd rounded-full font-semibold text-sm  font-playfair",
 										totalItems > 9
 											? "w-7 h-7 -top-4 right-[25px]"
 											: "w-5 h-5 -top-[.55rem] right-0"
@@ -113,7 +113,6 @@ const Navbar = () => {
 									{totalItems}
 								</span>
 								<i className="fa-solid fa-cart-shopping text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
-
 							</button>
 
 							{cartOpen && (
@@ -143,8 +142,6 @@ const Navbar = () => {
 								</div>
 							)}
 						</div>
-
-
 					</div>
 
 					<div className="relative mx-2">
@@ -158,7 +155,6 @@ const Navbar = () => {
 							}}
 							onClick={() => setShowUserModal(!showUserModal)}>
 							<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
-
 						</button>
 
 						{userMenuOpen && (

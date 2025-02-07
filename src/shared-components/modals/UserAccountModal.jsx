@@ -29,7 +29,7 @@ const UserAccountModal = ({ isOpen, handleClose }) => {
 					transition={{ duration: 0.5 }}
 					className="text-bkgrd bg-primary pt-4 pb-6 w-52 text-lg rounded-bl-sm flex flex-col justify-start">
 					{/* Username Section */}
-					<div className="px-8 py-4 w-full flex items-center justify-center">
+					<div className="px-8 py-4 w-full flex items-center  text-secondary">
 						<i className="fa-solid fa-user text-xl mr-3"></i>
 						{username}
 					</div>

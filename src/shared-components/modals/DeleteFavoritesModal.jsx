@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const DeleteFavoritesModal = ({
 	removeAllFavorites,
 	handleClose,
-	fetchFavorites,
+	fetchOrdersAndFavorites,
 }) => {
 	return (
 		<motion.div
@@ -35,7 +35,7 @@ const DeleteFavoritesModal = ({
 						to="/my-account/favorites"
 						onClick={async () => {
 							await removeAllFavorites();
-							await fetchFavorites();
+							await fetchOrdersAndFavorites();
 							handleClose();
 						}}>
 						<AnimatedButton

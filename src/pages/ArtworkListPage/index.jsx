@@ -92,7 +92,7 @@ const ArtworkListPage = ({ favorites, handleRemove }) => {
 								<div className="flex flex-wrap justify-center">
 									{filterByFrameColorAndCategory(artworks, color, category)
 										.length === 0 ? (
-										<div className="flex flex-col items-center justify-center text-accent w-full">
+										<div className="flex flex-col items-center justify-center text-fontColor w-full">
 											<p className="text-3xl">
 												Oops! Looks like your perfect match is playing hard to
 												find.
@@ -107,7 +107,6 @@ const ArtworkListPage = ({ favorites, handleRemove }) => {
 													key={artwork.artwork_id}
 													initial={{ opacity: 0, translateY: "20px" }}
 													whileInView={{ opacity: 1, translateY: 0 }}
-
 													transition={{
 														delay: 0.3 + (idx % 3) * 0.2,
 														duration: 0.4,

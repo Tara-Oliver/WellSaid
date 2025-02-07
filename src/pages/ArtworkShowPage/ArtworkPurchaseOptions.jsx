@@ -1,6 +1,7 @@
 import clsx from "clsx";
 import CartContext from "contexts/CartContext";
 import React, { useContext, useState } from "react";
+import { Link } from "react-router-dom";
 import { addArtworkToCart } from "services/cart";
 import AnimatedButton from "shared-components/AnimatedButton";
 import ModalWrapper from "shared-components/modals/ModalWrapper";
@@ -19,21 +20,19 @@ const ArtworkPurchaseOptions = ({
 	selectedSize,
 	setSelectedSize,
 }) => {
+	const { setCartModalOpen } = useContext(CartContext);
 	const [quantity, setQuantity] = useState(1);
 	const [loading, setLoading] = useState(false);
 	const [sizeModalOpen, setSizeModalOpen] = useState(false);
-
 	const [errors, setErrors] = useState({});
 
 	const handleSizeChange = (event) => {
 		const size = event.target.value;
 
-
 		if (size === "") {
 			setSelectedSize(null);
 			setSelectedPrice(null);
 		} else {
-
 			const selected = prices.find((item) => item.size === size);
 			setSelectedSize(selected.size);
 			setSelectedPrice(selected.price);
@@ -70,7 +69,7 @@ const ArtworkPurchaseOptions = ({
 							// console.error("Unexpected error", res);
 							setErrors(data);
 						} else {
-
+							setCartModalOpen(true);
 						}
 					} catch (err) {
 						// console.error("Error submitting order", err);
@@ -111,11 +110,11 @@ const ArtworkPurchaseOptions = ({
 						<i className="fa-solid fa-ruler-combined text-2xl mr-2"></i>
 						<p className="text-lg">Choose Your Frame Size:</p>
 					</div>
-					<button
+					<Link
 						onClick={() => setSizeModalOpen(true)}
 						className="transition ease-in-out hover:underline duration-300 hover:cursor-pointer decoration-2 hover:font-medium hover:underline-offset-4 hover:decoration-solid text-lg text-primary">
 						Size Chart
-					</button>
+					</Link>
 				</div>
 
 				<select

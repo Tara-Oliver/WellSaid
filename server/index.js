@@ -103,7 +103,6 @@ app.post("/users", async (req, res) => {
 	}
 
 	try {
-		QL
 		const result = await pool.query("SELECT * FROM users WHERE username = $1", [
 			username,
 		]);

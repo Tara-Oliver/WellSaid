@@ -33,7 +33,6 @@ const createOrderTable = async () => {
           subtotal NUMERIC NOT NULL,
           shipping_fee NUMERIC NOT NULL,
           total NUMERIC NOT NULL,
-          totalItems INT NOT NULL,
           ccv TEXT,
           created_at TIMESTAMP DEFAULT NOW()
         );
