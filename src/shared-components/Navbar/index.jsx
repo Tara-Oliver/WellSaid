@@ -141,27 +141,26 @@ const Navbar = () => {
 								</div>
 							)}
 						</div>
+						<div className="relative mx-2">
+							<button
+								className="flex items-center"
+								onMouseEnter={() => {
+									setUserMenuOpen(true);
+								}}
+								onMouseLeave={() => {
+									setUserMenuOpen(false);
+								}}
+								onClick={() => setShowUserModal(!showUserModal)}>
+								<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
+							</button>
+
+							{userMenuOpen && (
+								<div className="bg-secondary text-bkgrd absolute py-1 px-2 rounded-sm shadow-lg top-12 -left-9 text-nowrap after:content-[''] after:absolute after:-top-[1.02rem] after:left-1/2 after:border-b-[10px] after:border-b-secondary after:border-t-[10px] after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent after:-translate-x-[13px] z-20">
+									my account
+								</div>
+							)}
+						</div>
 					</div>
-
-					{/* <div className="relative mx-2">
-						<button
-							className="flex items-center"
-							onMouseEnter={() => {
-								setUserMenuOpen(true);
-							}}
-							onMouseLeave={() => {
-								setUserMenuOpen(false);
-							}}
-							onClick={() => setShowUserModal(!showUserModal)}>
-							<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
-						</button>
-
-						{userMenuOpen && (
-							<div className="bg-secondary text-bkgrd absolute py-1 px-2 rounded-sm shadow-lg top-12 -left-9 text-nowrap after:content-[''] after:absolute after:-top-[1.02rem] after:left-1/2 after:border-b-[10px] after:border-b-secondary after:border-t-[10px] after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent after:-translate-x-[13px] z-20">
-								my account
-							</div>
-						)}
-					</div> */}
 
 					<button
 						className="flex sm:hidden text-4xl"
