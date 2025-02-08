@@ -6,7 +6,7 @@
 
 
 
-Well Said Artwork is a portfolio e-commerce project featuring a curated collection of framed artwork with funny, inspirational, and song lyric quotes. Every graphic and design element—from typography to layout—was created by me, ensuring a cohesive and visually striking collection. The site delivers a seamless end-to-end shopping experience but does not process real transactions.
+Well Said Artwork is a portfolio e-commerce project featuring a curated collection of framed artwork with funny, inspirational, and song lyric quotes. I designed all the featured artwork and the brand logo, ensuring a cohesive and visually striking collection. While the site includes some third-party icons, every poster design is my original creation. The website delivers a seamless end-to-end shopping experience but does not process real transactions.
 
 
 
