@@ -1,9 +1,11 @@
 import React from "react";
 import RedirectToSignInIfSignedOut from "shared-components/RedirectToSignInIfSignedOut";
+
 import Navbar from "shared-components/Navbar";
 import Featured from "./Featured";
 import Banner from "./Banner";
 import Servicetype from "./Servicetype";
+import Footer from "shared-components/Footer";
 
 const Home = () => {
 	return (
@@ -16,6 +18,7 @@ const Home = () => {
 					<Featured />
 				</div>{" "}
 			</div>
+			<Footer />
 		</RedirectToSignInIfSignedOut>
 	);
 };

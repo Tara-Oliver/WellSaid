@@ -9,6 +9,7 @@ const apiFetch = (method, path, body = null) => {
 		},
 	};
 
+	console.log(VITE_API_BASE_URL);
 	const sessionToken = getSessionTokenStorage();
 
 	if (sessionToken) {

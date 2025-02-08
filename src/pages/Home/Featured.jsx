@@ -41,16 +41,14 @@ const Featured = () => {
 					const imageIdx = getRandomIdx(item.images);
 					return (
 						<Link
-							className="w-full"
+							className=""
 							to={{ pathname: `/artwork/${item.artwork_id}`, state: item }}
 							key={idx}>
-							<figure
-								className="gallery-item cursor-pointer w-full h-full"
-								key={idx}>
+							<figure className="gallery-item cursor-pointer" key={idx}>
 								<img
 									src={item.images[imageIdx].src}
 									alt="Photo of framed quote artwork"
-									className="transition-all duration-150 ease-in-out hover:transform hover:scale-110 object-cover w-full h-full"
+									className="transition-all duration-150 ease-in-out hover:transform hover:scale-105 object-cover w-[380px] h-[380px]"
 								/>
 							</figure>
 						</Link>

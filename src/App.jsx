@@ -17,7 +17,6 @@ import ScrollToTop from "shared-components/ScrollToTop";
 import CartContext from "contexts/CartContext";
 import { getCart } from "services/cart";
 import Home from "pages/Home";
-// import FavoritesPage from "pages/FavoritesPage";
 import Checkout from "pages/Checkout";
 
 import MyAcct from "pages/MyAcct";
@@ -66,13 +65,10 @@ const App = () => {
 	}, [sessionToken, location.pathname, fetchCart]);
 
 	const handleRemove = (artworkId) => {
-		// Update favorites list by removing the item
 		setFavorites((prevFavorites) =>
 			prevFavorites.filter((item) => item.artwork.artwork_id !== artworkId)
 		);
 	};
-
-
 
 	return (
 		<SessionContext.Provider
