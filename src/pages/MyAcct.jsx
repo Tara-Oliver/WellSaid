@@ -8,6 +8,7 @@ import Favs from "./Favs";
 import Orders from "./Orders";
 import clsx from "clsx";
 import AnimatedButton from "shared-components/AnimatedButton";
+import Footer from "shared-components/Footer";
 
 const MyAcct = ({
 	favorites,
@@ -115,6 +116,7 @@ const MyAcct = ({
 					{toastMessage}
 				</div>
 			</div>
+			<Footer />
 		</RedirectToSignInIfSignedOut>
 	);
 };

@@ -4,6 +4,7 @@ import Navbar from "shared-components/Navbar";
 import RedirectToSignInIfSignedOut from "shared-components/RedirectToSignInIfSignedOut";
 import OrderConfirmContent from "./Orders/OrderConfirmContent";
 import AnimatedButton from "shared-components/AnimatedButton";
+import Footer from "shared-components/Footer";
 
 const ConfirmationPage = () => {
 	const location = useLocation();
@@ -61,6 +62,7 @@ const ConfirmationPage = () => {
 					</div>
 				</div>
 			</div>
+			<Footer/>
 		</RedirectToSignInIfSignedOut>
 	);
 };

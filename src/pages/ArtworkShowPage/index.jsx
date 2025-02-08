@@ -4,6 +4,7 @@ import Navbar from "shared-components/Navbar";
 import { getArtworkById } from "services/artwork";
 import LoadingSpinner from "shared-components/LoadingSpinner";
 import ArtworkInfoSection from "./ArtworkInfoSection";
+import Footer from "shared-components/Footer";
 
 const ArtworkShowPage = () => {
 	const [artwork, setArtwork] = useState(null);
@@ -31,6 +32,7 @@ const ArtworkShowPage = () => {
 					)}
 				</div>
 			</div>
+			<Footer />
 		</>
 	);
 };

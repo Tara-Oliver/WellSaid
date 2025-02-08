@@ -10,6 +10,7 @@ import { FRAME_COLORS } from "shared-components/util";
 import FilterMenu from "./FilterMenu";
 import ListPageButtons from "./ListPageButtons";
 import { useLocation } from "react-router-dom";
+import Footer from "shared-components/Footer";
 
 const PAGE_SIZE = 6;
 const ArtworkListPage = ({ favorites, handleRemove }) => {
@@ -141,6 +142,7 @@ const ArtworkListPage = ({ favorites, handleRemove }) => {
 					numPages={numPages}
 				/>
 			</div>
+			<Footer />
 		</RedirectToSignInIfSignedOut>
 	);
 };
