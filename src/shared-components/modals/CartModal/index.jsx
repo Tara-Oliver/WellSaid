@@ -35,7 +35,7 @@ const CartModal = ({ handleClose }) => {
 			animate={{ translateX: 0 }}
 			transition={{ duration: 0.5 }}
 			className="h-full bg-bkgrd w-full max-w-2xl flex flex-col pb-8 text-fontColor font-lato">
-			<div className="bg-primary text-bkgrd flex md:justify-around items-center pb-6 border-2 border-yellow-400">
+			<div className="bg-primary text-bkgrd flex md:justify-around items-center pb-6">
 				<p className="relative inline-flex items-center justify-start pl-4 md:pr-12 pr-4 overflow-hidden font-semibold mt-6 text-2xl">
 					{username}'s Cart
 				</p>
