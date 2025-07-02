@@ -18,9 +18,10 @@ import CartContext from "contexts/CartContext";
 import { getCart } from "services/cart";
 import Home from "pages/Home";
 import Checkout from "pages/Checkout";
-
 import MyAcct from "pages/MyAcct";
 import ConfirmationPage from "pages/ConfirmationPage";
+import SignInModal from "shared-components/modals/SignInSection";
+import AuthModal from "shared-components/modals/AuthModal";
 
 const App = () => {
 	const [sessionToken, setSessionToken] = useState(() =>
@@ -32,6 +33,7 @@ const App = () => {
 	const [loading, setLoading] = useState(false);
 	const [initialized, setInitialized] = useState(false);
 	const [cartModalOpen, setCartModalOpen] = useState(false);
+	const [authModalOpen, setAuthModalOpen] = useState(false);
 
 	const fetchCart = useCallback(async () => {
 		const res = await getCart();
@@ -82,6 +84,9 @@ const App = () => {
 					setSessionToken(null);
 					removeSessionTokenStorage();
 				},
+				authModalOpen: authModalOpen,
+				openAuthModal: () => setAuthModalOpen(true),
+				closeAuthModal: () => setAuthModalOpen(false),
 			}}>
 			<CartContext.Provider
 				value={{
@@ -96,8 +101,9 @@ const App = () => {
 					<Routes>
 						<Route path="/" element={<Home />} />
 						<Route path="/checkout" element={<Checkout />} />
-						<Route path="/sign-in" element={<SignInPage />} />
-						<Route path="/sign-up" element={<SignUpPage />} />
+						{/* <Route path="/sign-in" element={<SignInPage />} /> */}
+						{/* <Route path="/sign-in" element={<SignInModal />} /> */}
+						{/* <Route path="/sign-up" element={<SignUpPage />} /> */}
 
 						<Route
 							path="/my-account/:section"
@@ -127,6 +133,7 @@ const App = () => {
 							element={<ConfirmationPage />}
 						/>
 					</Routes>
+					{authModalOpen && <AuthModal />}
 				</BrowserRouter>
 			</CartContext.Provider>
 		</SessionContext.Provider>

@@ -1,14 +1,15 @@
 import { motion } from "framer-motion";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { RemoveScroll } from "react-remove-scroll";
 import SessionContext from "contexts/SessionContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
 
+
 const UserAccountModal = ({ isOpen, handleClose }) => {
 	const { username, signOut } = useContext(SessionContext);
-
+	
 	const backgroundRef = useRef();
 	if (!isOpen) {
 		return null;
@@ -52,7 +53,10 @@ const UserAccountModal = ({ isOpen, handleClose }) => {
 
 					{/* Sign Out Button */}
 					<button
-						onClick={signOut}
+						onClick={() => {
+							signOut();
+							handleClose();
+						}}						
 						className="px-8 py-4 hover:bg-accent w-full flex items-center">
 						<i className="fa-solid fa-arrow-right-from-bracket mr-3"></i>
 						sign out
@@ -60,6 +64,7 @@ const UserAccountModal = ({ isOpen, handleClose }) => {
 				</motion.div>
 				
 			</div>
+			
 		</RemoveScroll>
 	);
 };

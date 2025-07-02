@@ -22,7 +22,7 @@ const ArtworkItem = ({
 	!artwork ? sellerItem : artwork;
 	const [isFavorite, setIsFavorite] = useState(null);
 	const [imageIdx, setImageIdx] = useState(getRandomIdx(artwork.images));
-	const { username } = useContext(SessionContext);
+	const { username, openAuthModal } = useContext(SessionContext);
 
 	useEffect(() => {
 		(async () => {
@@ -60,33 +60,38 @@ const ArtworkItem = ({
 					</div>
 				</Link>
 
-				{username && <div className="absolute top-[275px] right-0 bg-bkgrd rounded-full h-[34px] w-[34px]  text-secondary text-xl mx-1 flex justify-center items-center shadow-md shadow-fontColor">
+				<div className="absolute top-[275px] right-0 bg-bkgrd rounded-full h-[34px] w-[34px]  text-secondary text-xl mx-1 flex justify-center items-center shadow-md shadow-fontColor">
 					<button
 						className="flex justify-center items-center"
-						onClick={async () => {
-							const action = isFavorite
-								? "Removed from Favorites"
-								: "Added to Favorites";
+						onClick={
+							username
+								? async () => {
+										const action = isFavorite
+											? "Removed from Favorites"
+											: "Added to Favorites";
 
-							setIsFavorite(!isFavorite);
-							if (!isFavorite) {
-								await addArtworkToFavorites(artwork.artwork_id, { artwork });
-							} else {
-								await removeArtworkFromFavorites(artwork.artwork_id);
-								handleRemove(artwork.artwork_id);
-							}
+										setIsFavorite(!isFavorite);
+										if (!isFavorite) {
+											await addArtworkToFavorites(artwork.artwork_id, {
+												artwork,
+											});
+										} else {
+											await removeArtworkFromFavorites(artwork.artwork_id);
+											handleRemove(artwork.artwork_id);
+										}
 
-
-							setToastMessage(action);
-							setShowToast(true);
-							setTimeout(() => setShowToast(false), 2000);
-						}}>
+										setToastMessage(action);
+										setShowToast(true);
+										setTimeout(() => setShowToast(false), 2000);
+								  }
+								: openAuthModal
+						}>
 						<i
 							className={`fa-${
 								isFavorite ? "solid" : "regular"
 							} fa-heart`}></i>{" "}
 					</button>
-				</div>}
+				</div>
 			</div>
 
 			<div className="flex justify-between ">
@@ -107,8 +112,6 @@ const ArtworkItem = ({
 					))}
 				</div>
 			</div>
-
-
 		</div>
 	);
 };

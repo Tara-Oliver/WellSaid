@@ -8,21 +8,21 @@ import MobileMenuModal from "../modals/MobileMenuModal";
 import CartContext from "contexts/CartContext";
 import clsx from "clsx";
 import UserAccountModal from "shared-components/modals/UserAccountModal";
-import { useNavigate } from "react-router-dom";
 import AnimatedButton from "shared-components/AnimatedButton";
-
+import AuthModal from "shared-components/modals/AuthModal";
 
 const Navbar = () => {
 	const { cart, cartModalOpen, setCartModalOpen } = useContext(CartContext);
+	const { username, openAuthModal, authModalOpen, closeAuthModal } =
+		useContext(SessionContext);
 	const [shopOpen, setShopOpen] = useState(false);
 	const [ordersOpen, setOrdersOpen] = useState(false);
 	const [userMenuOpen, setUserMenuOpen] = useState(false);
 	const [showUserModal, setShowUserModal] = useState(false);
 	const [favoritesOpen, setFavoritesOpen] = useState(false);
 	const [cartOpen, setCartOpen] = useState(false);
-	const { username } = useContext(SessionContext);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-	const navigate = useNavigate();
+
 	let totalItems = 0;
 	let subtotal = 0;
 
@@ -95,10 +95,12 @@ const Navbar = () => {
 							)}
 						</div>
 
-						{username && <div className="relative mx-2">
+						<div className="relative mx-2">
 							<button
 								className="flex items-center relative"
-								onClick={() => setCartModalOpen(true)}
+								onClick={() => {
+									username ? setCartModalOpen(true) : openAuthModal();
+								}}
 								onMouseEnter={() => {
 									setCartOpen(true);
 								}}
@@ -123,7 +125,7 @@ const Navbar = () => {
 								</div>
 							)}
 						</div>
-}
+
 						<div className="relative mx-2">
 							<Link to="/my-account/orders">
 								<button
@@ -144,18 +146,8 @@ const Navbar = () => {
 								</div>
 							)}
 						</div>
-						 <div className="relative mx-2">
-							{username ? <button
-								className="flex items-center"
-								onMouseEnter={() => {
-									setUserMenuOpen(true);
-								}}
-								onMouseLeave={() => {
-									setUserMenuOpen(false);
-								}}
-								onClick={() => setShowUserModal(!showUserModal)}>
-								<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
-							</button> :
+						<div className="relative mx-2">
+							{username ? (
 								<button
 									className="flex items-center"
 									onMouseEnter={() => {
@@ -164,45 +156,63 @@ const Navbar = () => {
 									onMouseLeave={() => {
 										setUserMenuOpen(false);
 									}}
-									onClick={() => navigate("/sign-in")}>
-								<i className="fa-solid fa-arrow-right-from-bracket text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
-								</button>}
+									onClick={() => setShowUserModal(!showUserModal)}>
+									<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
+								</button>
+							) : (
+								<button
+									className="flex items-center"
+									onMouseEnter={() => {
+										setUserMenuOpen(true);
+									}}
+									onMouseLeave={() => {
+										setUserMenuOpen(false);
+									}}
+									// onClick={() => navigate("/sign-in")}
+									onClick={() => {
+										openAuthModal();
+										setUserMenuOpen(false);
+									}}>
+									<i className="fa-solid fa-arrow-right-from-bracket text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
+								</button>
+							)}
 
 							{userMenuOpen && (
-								<div className={clsx("bg-secondary text-bkgrd absolute py-1 px-2 rounded-sm shadow-lg text-nowrap after:content-[''] after:absolute after:-top-[1.02rem] after:left-1/2 after:border-b-[10px] after:border-b-secondary after:border-t-[10px] after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent after:-translate-x-[13px] z-20", username ? "top-12 -left-9": "top-12 -left-6")}>
+								<div
+									className={clsx(
+										"bg-secondary text-bkgrd absolute py-1 px-2 rounded-sm shadow-lg text-nowrap after:content-[''] after:absolute after:-top-[1.02rem] after:left-1/2 after:border-b-[10px] after:border-b-secondary after:border-t-[10px] after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent after:-translate-x-[13px] z-20",
+										username ? "top-12 -left-9" : "top-12 -left-6"
+									)}>
 									{username ? "my account" : "sign in"}
 								</div>
 							)}
 						</div>
 					</div>
-					
 
-					{username ? <button
-						className="flex sm:hidden text-4xl"
-						onClick={() => setMobileMenuOpen(true)}>
-						<i className="fa-solid fa-bars"></i>
-					</button> :
-						
-						
+					{username ? (
 						<button
-						className="flex sm:hidden text-lg"
-						onClick={() => navigate("/sign-in")}>
+							className="flex sm:hidden text-4xl"
+							onClick={() => setMobileMenuOpen(true)}>
+							<i className="fa-solid fa-bars"></i>
+						</button>
+					) : (
+						<button className="flex sm:hidden text-lg" onClick={openAuthModal}>
 							<AnimatedButton
-					text="sign in"
-					mainBorder={"border-bkgrd"}
-					mainText={"text-bkgrd"}
-					hoverBorder={"border-bkgrd"}
-					hoverBg={"bg-bkgrd"}
-					hoverText={"group-hover:text-primary"}
-					pyVal={"py-2 w-full"}
-					icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
-				/>
-					</button>}
-				
-
+								text="sign in"
+								mainBorder={"border-bkgrd"}
+								mainText={"text-bkgrd"}
+								hoverBorder={"border-bkgrd"}
+								hoverBg={"bg-bkgrd"}
+								hoverText={"group-hover:text-primary"}
+								pyVal={"py-2 w-full"}
+								icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
+							/>
+						</button>
+					)}
 				</div>
 			</nav>
 
+			<AuthModal isOpen={authModalOpen} handleClose={closeAuthModal} />
 			<UserAccountModal
 				isOpen={showUserModal}
 				handleClose={() => setShowUserModal(false)}

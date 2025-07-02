@@ -1,4 +1,4 @@
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import AnimatedButton from "shared-components/AnimatedButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -6,8 +6,8 @@ import ArtworkItem from "pages/ArtworkListPage/ArtworkItem";
 import { removeAllFavorites } from "services/favorite";
 import DeleteFavoritesModal from "shared-components/modals/DeleteFavoritesModal";
 import ModalWrapper from "shared-components/modals/ModalWrapper";
-
 import "style.css";
+import RedirectToSignInIfSignedOut from "shared-components/RedirectToSignInIfSignedOut";
 
 const Favs = ({
 	favorites,
@@ -20,7 +20,6 @@ const Favs = ({
 	const [slidesPerView, setSlidesPerView] = useState(3);
 	const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-
 	useEffect(() => {
 		const updateSlidesPerView = () => {
 			if (window.innerWidth < 640) {
@@ -32,19 +31,15 @@ const Favs = ({
 			}
 		};
 
-
 		window.addEventListener("resize", updateSlidesPerView);
 		updateSlidesPerView();
-
 
 		return () => window.removeEventListener("resize", updateSlidesPerView);
 	}, [favorites.length]);
 
-
 	return (
-		<>
+		<RedirectToSignInIfSignedOut>
 			<div className="flex justify-between">
-
 				{favorites.length > 0 && (
 					<button onClick={() => setOpenDeleteModal(true)}>
 						<AnimatedButton
@@ -111,7 +106,7 @@ const Favs = ({
 					fetchOrdersAndFavorites={fetchOrdersAndFavorites}
 				/>
 			</ModalWrapper>
-		</>
+		</RedirectToSignInIfSignedOut>
 	);
 };
 

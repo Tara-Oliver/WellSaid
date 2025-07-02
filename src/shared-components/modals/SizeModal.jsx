@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import React from "react";
-motion;
+
 const SizeModal = () => {
 	return (
 		<motion.div

@@ -5,11 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 const RedirectToSignInIfSignedOut = ({ children }) => {
 	const navigate = useNavigate();
-	const { username } = useContext(SessionContext);
+	const { username, openAuthModal } = useContext(SessionContext);
 
 	useEffect(() => {
 		if (username === null) {
-			navigate("/sign-in");
+			navigate("/");
+			openAuthModal();
 		}
 	}, [username]);
 

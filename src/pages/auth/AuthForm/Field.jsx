@@ -21,7 +21,7 @@ const Field = ({
 				id={field.label}
 				type={show ? "text" : field.type}
 				value={formData[field.label]}
-				className={`${width} px-2 py-1 text-fontColor focus:outline-primary border-2 border-fontColor bg-transparent`}
+				className={`${width} px-2 py-2 text-fontColor focus:outline-primary border-2 border-fontColor bg-transparent`}
 				onChange={onChange}
 			/>
 			<div className="text-red-700 italic text-sm">{errors[field.label]}</div>

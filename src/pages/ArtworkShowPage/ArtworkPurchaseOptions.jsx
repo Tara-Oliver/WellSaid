@@ -48,7 +48,7 @@ const ArtworkPurchaseOptions = ({
 	);
 
 	const navigate = useNavigate();
-	const { username } = useContext(SessionContext);
+	const { username, openAuthModal } = useContext(SessionContext);
 
 	return (
 		<>
@@ -57,7 +57,8 @@ const ArtworkPurchaseOptions = ({
 				onSubmit={async (e) => {
 					e.preventDefault();
 					if (username === null) {
-						navigate("/sign-in");
+						openAuthModal();
+						return;
 					}
 					setLoading(true);
 					const res = await addArtworkToCart(artwork.artwork_id, {
@@ -73,7 +74,6 @@ const ArtworkPurchaseOptions = ({
 
 					try {
 						if (res.status === 500) {
-
 							setErrors(data);
 						} else {
 							setCartModalOpen(true);
@@ -180,6 +180,7 @@ const ArtworkPurchaseOptions = ({
 					</button>
 				)}
 			</form>
+
 			<ModalWrapper
 				isOpen={sizeModalOpen}
 				handleClose={() => setSizeModalOpen(false)}>
