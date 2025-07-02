@@ -9,6 +9,8 @@ import CartContext from "contexts/CartContext";
 import clsx from "clsx";
 import UserAccountModal from "shared-components/modals/UserAccountModal";
 import { useNavigate } from "react-router-dom";
+import AnimatedButton from "shared-components/AnimatedButton";
+
 
 const Navbar = () => {
 	const { cart, cartModalOpen, setCartModalOpen } = useContext(CartContext);
@@ -173,12 +175,31 @@ const Navbar = () => {
 							)}
 						</div>
 					</div>
+					
 
-					<button
+					{username ? <button
 						className="flex sm:hidden text-4xl"
 						onClick={() => setMobileMenuOpen(true)}>
 						<i className="fa-solid fa-bars"></i>
-					</button>
+					</button> :
+						
+						
+						<button
+						className="flex sm:hidden text-lg"
+						onClick={() => navigate("/sign-in")}>
+							<AnimatedButton
+					text="sign in"
+					mainBorder={"border-bkgrd"}
+					mainText={"text-bkgrd"}
+					hoverBorder={"border-bkgrd"}
+					hoverBg={"bg-bkgrd"}
+					hoverText={"group-hover:text-primary"}
+					pyVal={"py-2 w-full"}
+					icon={<i className="fa-solid fa-arrow-right-from-bracket"></i>}
+				/>
+					</button>}
+				
+
 				</div>
 			</nav>
 
