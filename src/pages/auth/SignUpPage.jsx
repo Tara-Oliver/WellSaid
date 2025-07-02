@@ -12,7 +12,7 @@ const SignUpPage = () => {
 	return (
 		<RedirectToPostersIfSignedIn>
 			<FormContainer>
-			<div className="font-lato font-semibold">Sign up to access favorites, orders, cart and checkout.</div>
+			<div className="font-lato font-semibold px-4 text-center">Sign up to access favorites, orders, cart and checkout.</div>
 				<AuthForm
 					fields={[
 						{

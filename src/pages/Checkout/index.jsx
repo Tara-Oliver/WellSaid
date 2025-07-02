@@ -62,7 +62,7 @@ const Checkout = () => {
 								</div>
 								Checkout
 							</div>
-							<div className="bg-primary text-bkgrd text-center font-bold my-10 text-lg md:hidden block px-1">
+							<div className="bg-primary text-bkgrd text-center font-bold my-10 text-lg  block px-1">
 								<span className="">Note:</span> This is a demonstration site.
 								Orders placed here are not real.{" "}
 								<p>DO NOT ENTER ANY REAL PERSONAL DATA.</p>
@@ -76,7 +76,7 @@ const Checkout = () => {
 								setShippingFee={setShippingFee}
 								cartIsEditing={cartIsEditing}
 							/>
-							<div className="bg-primary text-bkgrd text-center font-bold my-10 text-lg md:hidden block px-1">
+							<div className="bg-primary text-bkgrd text-center font-bold my-10 text-lg  block px-1">
 								<span className="">Note:</span> This is a demonstration site.
 								Orders placed here are not real.{" "}
 								<p>DO NOT ENTER ANY REAL PERSONAL DATA.</p>

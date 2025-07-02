@@ -12,7 +12,7 @@ const SignInPage = () => {
 	return (
 		<RedirectToPostersIfSignedIn>
 			<FormContainer>
-			<div className="font-lato font-semibold">Sign in to access favorites, orders, cart and checkout.</div>
+			<div className="font-lato font-semibold px-4 text-center">Sign in to access favorites, orders, cart and checkout.</div>
 				<AuthForm
 					fields={[
 						{

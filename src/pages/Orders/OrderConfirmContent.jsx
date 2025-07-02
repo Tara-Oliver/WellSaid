@@ -34,7 +34,7 @@ const OrderConfirmContent = ({ order }) => {
 					</p>
 				</div>
 
-				<div className="border-2 border-red-900 capitalize w-full md:w-auto md:text-left text-center">
+				<div className="capitalize w-full md:w-auto md:text-left text-center">
 					<p className="font-playfair font-semibold text-lg ">
 						delivery options
 					</p>
