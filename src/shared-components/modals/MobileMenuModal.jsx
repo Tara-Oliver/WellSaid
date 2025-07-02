@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const MobileMenuModal = ({ openCart, handleClose }) => {
-	const { username, signOut } = useContext(SessionContext);
+	const { username, signOut, closeAuthModal } = useContext(SessionContext);
 	const { cart } = useContext(CartContext);
 	let totalItems = 0;
 
@@ -71,7 +71,10 @@ const MobileMenuModal = ({ openCart, handleClose }) => {
 
 			{/* Sign Out Button */}
 			<button
-				onClick={signOut}
+				onClick={() => {
+					signOut();
+					handleClose();
+				}}
 				className="px-8 py-4 hover:bg-accent w-full flex items-center">
 				<i className="fa-solid fa-arrow-right-from-bracket mr-3"></i>
 				sign out

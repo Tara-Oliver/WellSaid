@@ -5,9 +5,16 @@ import SessionContext from "contexts/SessionContext";
 import AnimatedButton from "shared-components/AnimatedButton";
 import AuthLink from "./AuthLink";
 
-const AuthForm2 = ({ fields, submitButtonText, onSubmit, onClick, text }) => {
+const AuthForm2 = ({
+	fields,
+	submitButtonText,
+	onSubmit,
+	handleSwitch,
+	text,
+}) => {
 	const sessionContext = useContext(SessionContext);
-
+	const { username, openAuthModal, authModalOpen, closeAuthModal } =
+		useContext(SessionContext);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState(() => {
 		const initialState = {};
@@ -74,6 +81,8 @@ const AuthForm2 = ({ fields, submitButtonText, onSubmit, onClick, text }) => {
 			const data = await res.json();
 			sessionContext.signIn(data.sessionToken);
 		}, 2400);
+
+		closeAuthModal();
 	};
 
 	return (
@@ -86,6 +95,7 @@ const AuthForm2 = ({ fields, submitButtonText, onSubmit, onClick, text }) => {
 				if (errorData) setErrors(errorData);
 
 				setLoading(false);
+				closeAuthModal();
 			}}>
 			{fields.map((field) => (
 				<Field
@@ -138,7 +148,7 @@ const AuthForm2 = ({ fields, submitButtonText, onSubmit, onClick, text }) => {
 				Continue as Guest?
 			</button>
 
-			<AuthLink onClick={onClick} text={text} />
+			<AuthLink handleSwitch={handleSwitch} text={text} />
 		</form>
 	);
 };

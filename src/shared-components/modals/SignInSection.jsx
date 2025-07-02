@@ -6,7 +6,7 @@ import SessionContext from "contexts/SessionContext";
 import React from "react";
 import AuthLink from "pages/auth/AuthForm/AuthLink";
 
-const SignInSection = ({ handleClose }) => {
+const SignInSection = ({ handleSwitch }) => {
 	const sessionContext = useContext(SessionContext);
 
 	return (
@@ -28,7 +28,7 @@ const SignInSection = ({ handleClose }) => {
 					},
 				]}
 				submitButtonText="sign in"
-				onClick={handleClose}
+				handleSwitch={handleSwitch}
 				text={"don't have an account? sign up"}
 				onSubmit={async (formData) => {
 					const res = await createSession({

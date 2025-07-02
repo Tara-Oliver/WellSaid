@@ -1,7 +1,11 @@
 import AuthForm2 from "pages/auth/AuthForm/AuthForm2";
-import React from "react";
+import React, { useContext } from "react";
+import { createUser } from "services/user";
+import SessionContext from "contexts/SessionContext";
 
-const SignUpSection = ({ handleClose }) => {
+const SignUpSection = ({ handleSwitch }) => {
+	const sessionContext = useContext(SessionContext);
+
 	return (
 		<div className="bg-bkgrd right w-full md:w-1/2 flex flex-col justify-center">
 			<div className="font-lato font-semibold px-2 mt-8 text-center text-wrap">
@@ -26,7 +30,7 @@ const SignUpSection = ({ handleClose }) => {
 					},
 				]}
 				submitButtonText="sign up"
-				onClick={handleClose}
+				handleSwitch={handleSwitch}
 				text={"already have an account? sign in"}
 				onSubmit={async (formData) => {
 					const res = await createUser({

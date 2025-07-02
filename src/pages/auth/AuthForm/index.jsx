@@ -84,7 +84,6 @@ const AuthForm = ({ fields, submitButtonText, onSubmit }) => {
 				setLoading(true);
 				const errorData = await onSubmit(formData);
 				if (errorData) setErrors(errorData);
-
 				setLoading(false);
 			}}>
 			{fields.map((field) => (

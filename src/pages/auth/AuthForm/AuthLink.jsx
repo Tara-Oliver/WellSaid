@@ -1,10 +1,9 @@
 import React from "react";
-// import { Link } from "react-router-dom";
 
-const AuthLink = ({ onClick, text }) => {
+const AuthLink = ({ handleSwitch, text }) => {
 	return (
 		<button
-			onClick={onClick}
+			onClick={handleSwitch}
 			className="text-sm font-lato text-fontColor hover:underline font-semibold text-center">
 			{text}
 		</button>

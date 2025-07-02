@@ -8,7 +8,7 @@ import SignInSection from "./SignInSection";
 import SignUpSection from "./SignUpSection";
 
 const AuthModal = ({ isOpen }) => {
-	const sessionContext = useContext(SessionContext);
+	// const sessionContext = useContext(SessionContext);
 	const { closeAuthModal } = useContext(SessionContext);
 
 	const [isSigningIn, setIsSigningIn] = useState(true);
@@ -50,9 +50,9 @@ const AuthModal = ({ isOpen }) => {
 							</div>
 
 							{isSigningIn ? (
-								<SignInSection handleClose={() => setIsSigningIn(false)} />
+								<SignInSection handleSwitch={() => setIsSigningIn(false)} />
 							) : (
-								<SignUpSection handleClose={() => setIsSigningIn(true)} />
+								<SignUpSection handleSwitch={() => setIsSigningIn(true)} />
 							)}
 						</div>
 					</div>

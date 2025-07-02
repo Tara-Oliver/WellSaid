@@ -61,8 +61,10 @@ const App = () => {
 	};
 
 	useEffect(() => {
-		fetchCart();
-		fetchOrdersAndFavorites();
+		if (sessionToken) {
+			fetchCart();
+			fetchOrdersAndFavorites();
+		}
 	}, [sessionToken, location.pathname, fetchCart]);
 
 	const handleRemove = (artworkId) => {
