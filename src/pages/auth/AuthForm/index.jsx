@@ -110,7 +110,6 @@ const AuthForm = ({ fields, submitButtonText, onSubmit }) => {
 					mainText={"text-primary"}
 					hoverBorder={"border-primary"}
 					hoverBg={"bg-primary"}
-					// mainBg={}
 					hoverText={"group-hover:text-bkgrd"}
 					pyVal={"py-2 w-full"}
 					icon={
@@ -133,7 +132,7 @@ const AuthForm = ({ fields, submitButtonText, onSubmit }) => {
 			</button>
 			<button
 				type="button"
-				className="transition ease-in-out hover:underline hover:cursor-pointer hover:font-medium hover:underline-offset-4 lowercase text-fontColor text-sm text-center my-4 w-full"
+				className="font-semibold transition ease-in-out hover:underline hover:cursor-pointer hover:underline-offset-4 lowercase text-fontColor text-sm text-center my-4 w-full"
 				onClick={handleGuestLogin}
 				disabled={guestLoginTyping}>
 				Continue as Guest?

@@ -12,6 +12,7 @@ const SignInPage = () => {
 	return (
 		<RedirectToPostersIfSignedIn>
 			<FormContainer>
+			<div className="font-lato font-semibold">Sign in to access favorites, orders, cart and checkout.</div>
 				<AuthForm
 					fields={[
 						{
@@ -43,7 +44,7 @@ const SignInPage = () => {
 				/>
 				<Link
 					to="/sign-up"
-					className="text-sm font-lato text-fontColor hover:underline">
+					className="text-sm font-lato text-fontColor hover:underline font-semibold">
 					don't have an account? sign up
 				</Link>
 			</FormContainer>

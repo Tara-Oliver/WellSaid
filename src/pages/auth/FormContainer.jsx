@@ -25,6 +25,7 @@ const FormContainer = ({ children }) => {
 					<p className="font-playfair text-2xl tracking-widest font-bold text-primary uppercase">
 						artwork
 					</p>
+					
 				</div>
 				{children}
 			</div>
