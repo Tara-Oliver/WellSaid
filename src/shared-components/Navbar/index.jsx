@@ -99,7 +99,12 @@ const Navbar = () => {
 							<button
 								className="flex items-center relative"
 								onClick={() => {
-									username ? setCartModalOpen(true) : openAuthModal();
+									if (username) {
+										setCartModalOpen(true);
+									} else {
+										openAuthModal();
+										setCartOpen(false);
+									}
 								}}
 								onMouseEnter={() => {
 									setCartOpen(true);

@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignInPage from "./pages/auth/SignInPage";
-import SignUpPage from "./pages/auth/SignUpPage";
+// import SignInPage from "./pages/auth/SignInPage";
+// import SignUpPage from "./pages/auth/SignUpPage";
 import ArtworkListPage from "./pages/ArtworkListPage";
 import { getAllFavorites } from "services/favorite";
 import { getAllOrders } from "services/order";
@@ -20,7 +20,6 @@ import Home from "pages/Home";
 import Checkout from "pages/Checkout";
 import MyAcct from "pages/MyAcct";
 import ConfirmationPage from "pages/ConfirmationPage";
-import SignInModal from "shared-components/modals/SignInSection";
 import AuthModal from "shared-components/modals/AuthModal";
 
 const App = () => {
