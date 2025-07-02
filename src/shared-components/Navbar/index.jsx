@@ -8,6 +8,7 @@ import MobileMenuModal from "../modals/MobileMenuModal";
 import CartContext from "contexts/CartContext";
 import clsx from "clsx";
 import UserAccountModal from "shared-components/modals/UserAccountModal";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
 	const { cart, cartModalOpen, setCartModalOpen } = useContext(CartContext);
@@ -19,7 +20,7 @@ const Navbar = () => {
 	const [cartOpen, setCartOpen] = useState(false);
 	const { username } = useContext(SessionContext);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
+	const navigate = useNavigate();
 	let totalItems = 0;
 	let subtotal = 0;
 
@@ -154,14 +155,14 @@ const Navbar = () => {
 								<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
 							</button> :
 								<button
-								className="flex items-center"
-								onMouseEnter={() => {
-									setUserMenuOpen(true);
-								}}
-								onMouseLeave={() => {
-									setUserMenuOpen(false);
-								}}
-								onClick={() => setShowUserModal(!showUserModal)}>
+									className="flex items-center"
+									onMouseEnter={() => {
+										setUserMenuOpen(true);
+									}}
+									onMouseLeave={() => {
+										setUserMenuOpen(false);
+									}}
+									onClick={() => navigate("/sign-in")}>
 								<i className="fa-solid fa-arrow-right-from-bracket text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
 								</button>}
 
