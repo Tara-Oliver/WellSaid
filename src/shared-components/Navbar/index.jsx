@@ -112,15 +112,17 @@ const Navbar = () => {
 								onMouseLeave={() => {
 									setCartOpen(false);
 								}}>
-								<span
-									className={clsx(
-										"flex justify-center items-center absolute bg-secondary text-bkgrd rounded-full font-semibold text-sm  font-playfair",
-										totalItems > 9
-											? "w-7 h-7 -top-4 right-[25px]"
-											: "w-5 h-5 -top-[.55rem] right-0"
-									)}>
-									{totalItems}
-								</span>
+								{username && (
+									<span
+										className={clsx(
+											"flex justify-center items-center absolute bg-secondary text-bkgrd rounded-full font-semibold text-sm  font-playfair",
+											totalItems > 9
+												? "w-7 h-7 -top-4 right-[25px]"
+												: "w-5 h-5 -top-[.55rem] right-0"
+										)}>
+										{totalItems}
+									</span>
+								)}
 								<i className="fa-solid fa-cart-shopping text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
 							</button>
 

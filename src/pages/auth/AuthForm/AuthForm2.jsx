@@ -13,8 +13,7 @@ const AuthForm2 = ({
 	text,
 }) => {
 	const sessionContext = useContext(SessionContext);
-	const { username, openAuthModal, authModalOpen, closeAuthModal } =
-		useContext(SessionContext);
+	const { closeAuthModal } = useContext(SessionContext);
 	const [loading, setLoading] = useState(false);
 	const [formData, setFormData] = useState(() => {
 		const initialState = {};
@@ -80,9 +79,8 @@ const AuthForm2 = ({
 			});
 			const data = await res.json();
 			sessionContext.signIn(data.sessionToken);
+			closeAuthModal();
 		}, 2400);
-
-		closeAuthModal();
 	};
 
 	return (
