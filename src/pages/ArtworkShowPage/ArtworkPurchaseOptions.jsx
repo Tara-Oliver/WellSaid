@@ -7,6 +7,8 @@ import AnimatedButton from "shared-components/AnimatedButton";
 import ModalWrapper from "shared-components/modals/ModalWrapper";
 import SizeModal from "shared-components/modals/SizeModal";
 import { prices } from "shared-components/util";
+import { useNavigate } from "react-router-dom";
+import SessionContext from "contexts/SessionContext";
 
 import { FRAME_COLORS } from "shared-components/util";
 
@@ -45,12 +47,18 @@ const ArtworkPurchaseOptions = ({
 		<i className="fa-solid fa-cart-plus mr-2"></i>
 	);
 
+	const navigate = useNavigate();
+	const { username } = useContext(SessionContext);
+
 	return (
 		<>
 			<form
 				className="flex flex-col justify-start"
 				onSubmit={async (e) => {
 					e.preventDefault();
+					if (username === null) {
+						navigate("/sign-in");
+					}
 					setLoading(true);
 					const res = await addArtworkToCart(artwork.artwork_id, {
 						quantity,

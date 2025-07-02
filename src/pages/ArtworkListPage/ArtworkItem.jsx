@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import clsx from "clsx";
+import SessionContext from "contexts/SessionContext";
+
 import { Link, useLocation } from "react-router-dom";
 import { getRandomIdx, FRAME_COLORS } from "shared-components/util";
 import {
@@ -20,6 +22,7 @@ const ArtworkItem = ({
 	!artwork ? sellerItem : artwork;
 	const [isFavorite, setIsFavorite] = useState(null);
 	const [imageIdx, setImageIdx] = useState(getRandomIdx(artwork.images));
+	const { username } = useContext(SessionContext);
 
 	useEffect(() => {
 		(async () => {
@@ -57,7 +60,7 @@ const ArtworkItem = ({
 					</div>
 				</Link>
 
-				<div className="absolute top-[275px] right-0 bg-bkgrd rounded-full h-[34px] w-[34px]  text-secondary text-xl mx-1 flex justify-center items-center shadow-md shadow-fontColor">
+				{username && <div className="absolute top-[275px] right-0 bg-bkgrd rounded-full h-[34px] w-[34px]  text-secondary text-xl mx-1 flex justify-center items-center shadow-md shadow-fontColor">
 					<button
 						className="flex justify-center items-center"
 						onClick={async () => {
@@ -83,7 +86,7 @@ const ArtworkItem = ({
 								isFavorite ? "solid" : "regular"
 							} fa-heart`}></i>{" "}
 					</button>
-				</div>
+				</div>}
 			</div>
 
 			<div className="flex justify-between ">

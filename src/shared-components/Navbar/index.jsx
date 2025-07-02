@@ -1,5 +1,5 @@
 import React from "react";
-
+import SessionContext from "contexts/SessionContext";
 import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import CartModal from "../modals/CartModal";
@@ -17,7 +17,7 @@ const Navbar = () => {
 	const [showUserModal, setShowUserModal] = useState(false);
 	const [favoritesOpen, setFavoritesOpen] = useState(false);
 	const [cartOpen, setCartOpen] = useState(false);
-
+	const { username } = useContext(SessionContext);
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	let totalItems = 0;
@@ -92,7 +92,7 @@ const Navbar = () => {
 							)}
 						</div>
 
-						<div className="relative mx-2">
+						{username && <div className="relative mx-2">
 							<button
 								className="flex items-center relative"
 								onClick={() => setCartModalOpen(true)}
@@ -120,7 +120,7 @@ const Navbar = () => {
 								</div>
 							)}
 						</div>
-
+}
 						<div className="relative mx-2">
 							<Link to="/my-account/orders">
 								<button
@@ -141,8 +141,8 @@ const Navbar = () => {
 								</div>
 							)}
 						</div>
-						<div className="relative mx-2">
-							<button
+						 <div className="relative mx-2">
+							{username ? <button
 								className="flex items-center"
 								onMouseEnter={() => {
 									setUserMenuOpen(true);
@@ -152,11 +152,22 @@ const Navbar = () => {
 								}}
 								onClick={() => setShowUserModal(!showUserModal)}>
 								<i className="fa-solid fa-user text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
-							</button>
+							</button> :
+								<button
+								className="flex items-center"
+								onMouseEnter={() => {
+									setUserMenuOpen(true);
+								}}
+								onMouseLeave={() => {
+									setUserMenuOpen(false);
+								}}
+								onClick={() => setShowUserModal(!showUserModal)}>
+								<i className="fa-solid fa-arrow-right-from-bracket text-xl mr-3 hover:text-secondary transition ease-in-out duration-300"></i>
+								</button>}
 
 							{userMenuOpen && (
-								<div className="bg-secondary text-bkgrd absolute py-1 px-2 rounded-sm shadow-lg top-12 -left-9 text-nowrap after:content-[''] after:absolute after:-top-[1.02rem] after:left-1/2 after:border-b-[10px] after:border-b-secondary after:border-t-[10px] after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent after:-translate-x-[13px] z-20">
-									my account
+								<div className={clsx("bg-secondary text-bkgrd absolute py-1 px-2 rounded-sm shadow-lg text-nowrap after:content-[''] after:absolute after:-top-[1.02rem] after:left-1/2 after:border-b-[10px] after:border-b-secondary after:border-t-[10px] after:border-t-transparent after:border-l-[10px] after:border-l-transparent after:border-r-[10px] after:border-r-transparent after:-translate-x-[13px] z-20", username ? "top-12 -left-9": "top-12 -left-6")}>
+									{username ? "my account" : "sign in"}
 								</div>
 							)}
 						</div>

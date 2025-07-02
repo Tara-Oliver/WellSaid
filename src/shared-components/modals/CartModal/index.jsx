@@ -9,6 +9,8 @@ import AnimatedButton from "shared-components/AnimatedButton";
 import { emptyCart } from "services/cart";
 import { Link } from "react-router-dom";
 
+
+
 const CartModal = ({ handleClose }) => {
 	const { username } = useContext(SessionContext);
 	const [loading, setLoading] = useState(false);
@@ -30,6 +32,7 @@ const CartModal = ({ handleClose }) => {
 	}
 
 	return (
+		
 		<motion.div
 			initial={{ translateX: "100%" }}
 			animate={{ translateX: 0 }}
@@ -140,7 +143,8 @@ const CartModal = ({ handleClose }) => {
 					) : null}
 				</div>
 			</div>
-		</motion.div>
+			</motion.div>
+		
 	);
 };
 

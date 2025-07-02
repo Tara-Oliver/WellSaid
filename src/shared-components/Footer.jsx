@@ -4,7 +4,7 @@ Link;
 
 const Footer = () => {
 	return (
-		<div className="bg-bkgrd flex justify-center w-screen py-4 font-lato">
+		<div className="w-screen bg-bkgrd flex justify-center py-4 font-lato">
 			<Link
 				to="https://tara-oliver.vercel.app/"
 				className="text-fontColor/50 text-xl group">

@@ -3,7 +3,7 @@ import Navbar from "shared-components/Navbar";
 import ArtworkItem from "./ArtworkItem";
 import RedirectToSignInIfSignedOut from "shared-components/RedirectToSignInIfSignedOut";
 import { getAllArtwork } from "services/artwork";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import LoadingSpinner from "shared-components/LoadingSpinner";
 import { motion } from "framer-motion";
 import { FRAME_COLORS } from "shared-components/util";
@@ -15,6 +15,7 @@ import Footer from "shared-components/Footer";
 const PAGE_SIZE = 6;
 const ArtworkListPage = ({ favorites, handleRemove }) => {
 	const location = useLocation();
+	
 	const pageCategory = new URLSearchParams(location.search).get("pageCategory");
 	const [loading, setLoading] = useState(false);
 	const [artworks, setArtworks] = useState([]);
@@ -56,9 +57,10 @@ const ArtworkListPage = ({ favorites, handleRemove }) => {
 	);
 
 	return (
-		<RedirectToSignInIfSignedOut>
+		// <RedirectToSignInIfSignedOut>
+		<>
 			<Navbar />
-			<div className="flex flex-col items-center min-h-screen bg-bkgrd font-lato">
+			<div className="w-screen flex flex-col items-center min-h-screen bg-bkgrd font-lato">
 				<div className="w-full max-w-8xl py-24">
 					{loading ? (
 						<LoadingSpinner />
@@ -143,7 +145,8 @@ const ArtworkListPage = ({ favorites, handleRemove }) => {
 				/>
 			</div>
 			<Footer />
-		</RedirectToSignInIfSignedOut>
+			</>
+		// </RedirectToSignInIfSignedOut>
 	);
 };
 

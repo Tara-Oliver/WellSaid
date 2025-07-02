@@ -23,7 +23,7 @@ const ArtworkShowPage = () => {
 	return (
 		<>
 			<Navbar />
-			<div className="flex justify-center bg-bkgrd min-h-screen font-lato">
+			<div className="w-screen flex justify-center bg-bkgrd min-h-screen font-lato">
 				<div className="w-full max-w-6xl py-24">
 					{loading ? (
 						<LoadingSpinner />
