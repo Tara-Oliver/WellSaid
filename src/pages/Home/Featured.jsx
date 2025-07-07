@@ -48,7 +48,7 @@ const Featured = () => {
 								<img
 									src={item.images[imageIdx].src}
 									alt="Photo of framed quote artwork"
-									className="transition-all duration-150 ease-in-out hover:transform hover:scale-105 object-cover w-[320px] h-[320px]"
+									className="transition-all duration-150 ease-in-out hover:transform hover:scale-105 object-cover w-[360px] h-[400px]"
 								/>
 							</figure>
 						</Link>
