@@ -12,7 +12,9 @@ const SignUpPage = () => {
 	return (
 		<RedirectToPostersIfSignedIn>
 			<FormContainer>
-			<div className="font-lato font-semibold px-4 text-center">Sign up to access favorites, orders, cart and checkout.</div>
+				<div className="font-lato font-semibold px-4 text-center">
+					Sign up to access favorites, orders, cart and checkout.
+				</div>
 				<AuthForm
 					fields={[
 						{
@@ -58,49 +60,3 @@ const SignUpPage = () => {
 };
 
 export default SignUpPage;
-
-// return (
-// 	<RedirectToPostersIfSignedIn>
-// 		<FormContainer>
-// 			<AuthForm
-// 				fields={[
-// 					{
-// 						label: "username",
-// 						type: "text",
-// 						icon: false,
-// 					},
-// 					{
-// 						label: "password",
-// 						type: "password",
-// 						icon: true,
-// 					},
-// 					{
-// 						label: "confirmPassword",
-// 						type: "password",
-// 						icon: true,
-// 					},
-// 				]}
-// 				submitButtonText="create account"
-// 				onSubmit={async (formData) => {
-// 					const res = await createUser({
-// 						username: formData.username,
-// 						password: formData.password,
-// 						confirmPassword: formData.confirmPassword,
-// 					});
-// 					const data = await res.json();
-
-// 					if (res.status === 200) {
-// 						sessionContext.signIn(data.sessionToken);
-// 					} else {
-// 						return data;
-// 					}
-// 				}}
-// 			/>
-// 			<Link
-// 				to="/sign-in"
-// 				className="text-sm text-fontColor hover:underline font-lato">
-// 				already have an account? sign in
-// 			</Link>
-// 		</FormContainer>
-// 	</RedirectToPostersIfSignedIn>
-// );

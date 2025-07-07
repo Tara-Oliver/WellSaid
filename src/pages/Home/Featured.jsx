@@ -36,7 +36,26 @@ const Featured = () => {
 				</Link>
 			</div>
 
-			<div className="right flex-1 grid md:grid-cols-3  grid-cols-2 md:gap-5 gap-2">
+			<div className="right flex-1 md:hidden">
+				{featured.slice(0, 3).map((item, idx) => {
+					const imageIdx = getRandomIdx(item.images);
+					return (
+						<Link
+							className=""
+							to={{ pathname: `/artwork/${item.artwork_id}`, state: item }}
+							key={idx}>
+							<figure className="gallery-item cursor-pointer my-4" key={idx}>
+								<img
+									src={item.images[imageIdx].src}
+									alt="Photo of framed quote artwork"
+									className="transition-all duration-150 ease-in-out hover:transform hover:scale-105 object-cover w-[320px] h-[320px]"
+								/>
+							</figure>
+						</Link>
+					);
+				})}
+			</div>
+			<div className="right flex-1 hidden md:grid md:grid-cols-3  grid-cols-2 md:gap-5 gap-2">
 				{featured.map((item, idx) => {
 					const imageIdx = getRandomIdx(item.images);
 					return (

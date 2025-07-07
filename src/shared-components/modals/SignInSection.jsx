@@ -10,7 +10,7 @@ const SignInSection = ({ handleSwitch }) => {
 	const sessionContext = useContext(SessionContext);
 
 	return (
-		<div className="bg-bkgrd right w-full md:w-1/2 flex flex-col justify-center">
+		<div className="bg-bkgrd right w-full md:w-1/2 flex flex-col justify-center mx-4">
 			<div className="font-lato font-semibold px-2 mt-6 text-center text-wrap">
 				Sign in to access favorites, orders, cart and checkout.
 			</div>

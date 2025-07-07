@@ -30,7 +30,7 @@ const AuthModal = ({ isOpen }) => {
 					}}
 					className="fixed top-0 right-0 w-full h-full bg-black/30 backdrop-blur-sm flex justify-center items-center font-lato z-20">
 					<motion.button
-						className="absolute top-0 right-0 z-10 p-2"
+						className="absolute top-0 right-2 z-10 p-2"
 						onClick={closeAuthModal}
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
