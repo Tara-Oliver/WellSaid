@@ -9,20 +9,35 @@ import { v4 as uuidv4 } from "uuid";
 const { Pool } = pkg;
 dotenv.config();
 
+// Neon's pgBouncer pooler doesn't support channel_binding — strip it to avoid
+// "Connection terminated unexpectedly" errors at authentication time.
+const connectionString = (process.env.DATABASE_URL || "").replace(
+	/[?&]channel_binding=[^&]*/,
+	(m) => (m.startsWith("?") ? "?" : "")
+);
+
 const pool = new Pool({
-	connectionString: process.env.DATABASE_URL,
-	ssl: {
-		rejectUnauthorized: false,
-	},
+	connectionString,
+	ssl: { rejectUnauthorized: false },
+	max: 5,
+	idleTimeoutMillis: 10000,
+	connectionTimeoutMillis: 5000,
+});
+
+pool.on("error", (err) => {
+	console.error("Idle client error:", err.message);
 });
 
 const connectToDB = async () => {
+	let client;
 	try {
-		await pool.connect();
+		client = await pool.connect();
 		console.log("Connected to PostgreSQL!");
 	} catch (error) {
 		console.error("Failed to connect to PostgreSQL:", error);
 		process.exit(1);
+	} finally {
+		if (client) client.release();
 	}
 };
 

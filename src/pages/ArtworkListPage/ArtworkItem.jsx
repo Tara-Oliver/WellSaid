@@ -28,7 +28,7 @@ const ArtworkItem = ({
 		(async () => {
 			if (color) {
 				setImageIdx(
-					artwork.images.findIndex((image) => image.frame_color === color)
+					artwork.images.findIndex((image) => image.frame_color === color),
 				);
 			}
 		})();
@@ -37,13 +37,13 @@ const ArtworkItem = ({
 	useEffect(() => {
 		if (favorites && artwork.artwork_id) {
 			const isItemFavorited = favorites.some(
-				(item) => item.artwork_id === artwork.artwork_id
+				(item) => item.artwork_id === artwork.artwork_id,
 			);
 			setIsFavorite(isItemFavorited);
 		}
 	}, [artwork.artwork_id, favorites]);
 	return (
-		<div className="relative mx-4 my-8 font-lato  max-w-fit">
+		<div className="relative mx-4 my-8 font-lato max-w-fit">
 			<Link to={`/artwork/${artwork.artwork_id}`}>
 				<img
 					src={artwork.images[imageIdx].src}
@@ -83,7 +83,7 @@ const ArtworkItem = ({
 										setToastMessage(action);
 										setShowToast(true);
 										setTimeout(() => setShowToast(false), 2000);
-								  }
+									}
 								: openAuthModal
 						}>
 						<i
@@ -105,7 +105,7 @@ const ArtworkItem = ({
 							className={clsx(
 								"w-5 h-5 mx-[3px] border border-highlight cursor-pointer transition ease-in-out duration-300",
 								FRAME_COLORS[image.frame_color],
-								idx === imageIdx && "shadow-[0_2px_0_0_#0e1015]"
+								idx === imageIdx && "shadow-[0_2px_0_0_#0e1015]",
 							)}
 							key={idx}
 							onMouseEnter={() => setImageIdx(idx)}></div>

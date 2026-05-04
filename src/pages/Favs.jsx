@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useRef, useState } from "react";
 import AnimatedButton from "shared-components/AnimatedButton";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination } from "swiper/modules";
+import { Pagination } from "swiper/modules";
 import ArtworkItem from "pages/ArtworkListPage/ArtworkItem";
 import { removeAllFavorites } from "services/favorite";
 import DeleteFavoritesModal from "shared-components/modals/DeleteFavoritesModal";
@@ -17,29 +17,30 @@ const Favs = ({
 	setShowToast,
 	setToastMessage,
 }) => {
-	const [slidesPerView, setSlidesPerView] = useState(3);
+	// const [slidesPerView, setSlidesPerView] = useState(3);
 	const [openDeleteModal, setOpenDeleteModal] = useState(false);
+	const swiperRef = useRef(null);
 
-	useEffect(() => {
-		const updateSlidesPerView = () => {
-			if (window.innerWidth < 640) {
-				setSlidesPerView(Math.min(1, favorites.length));
-			} else if (window.innerWidth < 768) {
-				setSlidesPerView(Math.min(2, favorites.length));
-			} else {
-				setSlidesPerView(Math.min(3, favorites.length));
-			}
-		};
+	// useEffect(() => {
+	// 	const updateSlidesPerView = () => {
+	// 		if (window.innerWidth < 640) {
+	// 			setSlidesPerView(1);
+	// 		} else if (window.innerWidth < 768) {
+	// 			setSlidesPerView(2);
+	// 		} else {
+	// 			setSlidesPerView(3);
+	// 		}
+	// 	};
 
-		window.addEventListener("resize", updateSlidesPerView);
-		updateSlidesPerView();
+	// 	window.addEventListener("resize", updateSlidesPerView);
+	// 	updateSlidesPerView();
 
-		return () => window.removeEventListener("resize", updateSlidesPerView);
-	}, [favorites.length]);
+	// 	return () => window.removeEventListener("resize", updateSlidesPerView);
+	// }, []);
 
 	return (
 		<RedirectToSignInIfSignedOut>
-			<div className="flex justify-between">
+			<div className="flex justify-center my-4">
 				{favorites.length > 0 && (
 					<button onClick={() => setOpenDeleteModal(true)}>
 						<AnimatedButton
@@ -66,35 +67,38 @@ const Favs = ({
 					</p>
 				</div>
 			) : (
-				<div className="flex flex-1 justify-center items-center w-full">
-					<button className="fav-swiper-button-prev"></button>
-					<Swiper
-						key={favorites.length}
-						className="flex w-full"
-						loop={true}
-						loopAddBlankSlides={true}
-						navigation={{
-							prevEl: ".fav-swiper-button-prev",
-							nextEl: ".fav-swiper-button-next",
-						}}
-						slidesPerView={slidesPerView}
-						modules={[Navigation, Pagination]}
-						pagination={{ clickable: true }}>
-						{favorites.map((item, idx) => (
-							<SwiperSlide key={idx}>
-								<div className="flex justify-center">
-									<ArtworkItem
-										artwork={item.artwork}
-										favorites={favorites}
-										handleRemove={handleRemove}
-										setShowToast={setShowToast}
-										setToastMessage={setToastMessage}
-									/>
-								</div>
-							</SwiperSlide>
-						))}
-					</Swiper>
-					<button className="fav-swiper-button-next"></button>
+				<div className="flex items-center w-full min-w-0">
+					<button
+						className="fav-swiper-button-prev text-fontColor md:text-4xl text-2xl mr-2 cursor-pointer shrink-0"
+						onClick={() => swiperRef.current?.slidePrev()}></button>
+					<div className="flex w-full overflow-hidden min-w-0">
+						<Swiper
+							loop={favorites.length > 1}
+							slidesPerView="auto"
+							spaceBetween={3}
+							modules={[Pagination]}
+							pagination={{ clickable: true }}
+							onSwiper={(swiper) => {
+								swiperRef.current = swiper;
+							}}>
+							{favorites.map((item, idx) => (
+								<SwiperSlide key={idx}>
+									<div className="flex justify-center">
+										<ArtworkItem
+											artwork={item.artwork}
+											favorites={favorites}
+											handleRemove={handleRemove}
+											setShowToast={setShowToast}
+											setToastMessage={setToastMessage}
+										/>
+									</div>
+								</SwiperSlide>
+							))}
+						</Swiper>
+					</div>
+					<button
+						className="fav-swiper-button-next text-fontColor md:text-4xl text-2xl ml-2 cursor-pointer shrink-0"
+						onClick={() => swiperRef.current?.slideNext()}></button>
 				</div>
 			)}
 			<ModalWrapper
