@@ -113,29 +113,43 @@ const CartModal = ({ handleClose }) => {
 								</div>
 							</div>
 
-							<Link to="/checkout" onClick={handleClose}>
-								<AnimatedButton
-									text={"proceed to checkout"}
-									mainBorder={"border-fontColor"}
-									mainText={"text-fontColor"}
-									hoverBorder={"border-fontColor"}
-									hoverBg={"bg-fontColor"}
-									hoverText={"group-hover:text-bkgrd"}
-									pyVal={"py-3 w-full"}
-									icon={
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="28"
-											height="28"
-											viewBox="0 0 24 24">
-											<path
-												fill="currentColor"
-												d="M15.835 11.63L9.205 5.2C8.79 4.799 8 5.042 8 5.57v12.86c0 .528.79.771 1.205.37l6.63-6.43a.5.5 0 0 0 0-.74"
-											/>
-										</svg>
-									}
-								/>
-							</Link>
+							<div className="flex flex-col sm:flex-row gap-x-4 w-full">
+								<Link to="/artwork" onClick={handleClose} className="flex-1">
+									<AnimatedButton
+										text={"continue shopping"}
+										mainBorder={"border-fontColor"}
+										mainText={"text-fontColor"}
+										hoverBorder={"border-fontColor"}
+										hoverBg={"bg-fontColor"}
+										hoverText={"group-hover:text-bkgrd"}
+										pyVal={"py-3 w-full"}
+										icon={<i className="fas fa-long-arrow-alt-right"></i>}
+									/>
+								</Link>
+								<Link to="/checkout" onClick={handleClose} className="flex-1">
+									<AnimatedButton
+										text={"proceed to checkout"}
+										mainBorder={"border-fontColor"}
+										mainText={"text-fontColor"}
+										hoverBorder={"border-fontColor"}
+										hoverBg={"bg-fontColor"}
+										hoverText={"group-hover:text-bkgrd"}
+										pyVal={"py-3 w-full"}
+										icon={
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="28"
+												height="28"
+												viewBox="0 0 24 24">
+												<path
+													fill="currentColor"
+													d="M15.835 11.63L9.205 5.2C8.79 4.799 8 5.042 8 5.57v12.86c0 .528.79.771 1.205.37l6.63-6.43a.5.5 0 0 0 0-.74"
+												/>
+											</svg>
+										}
+									/>
+								</Link>
+							</div>
 						</>
 					) : null}
 				</div>
