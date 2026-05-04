@@ -32,7 +32,7 @@ const MyAcct = ({
 		<RedirectToSignInIfSignedOut>
 			<Navbar />
 			<div className="flex justify-center bg-bkgrd min-h-screen">
-				<div className="flex flex-col w-full max-w-8xl py-24 px-4">
+				<div className="flex flex-col w-full max-w-8xl py-24 px-0 md:px-4">
 					<div className="flex-col md:flex-row flex justify-between w-full font-lato">
 						<div className="flex flex-col md:py-0 py-4">
 							<p className="mb-6 font-playfair text-primary text-4xl capitalize px-4 text-center md:text-left">
@@ -66,7 +66,7 @@ const MyAcct = ({
 								<LoadingSpinner />
 							</div>
 						) : (
-							<div className="flex flex-col items-stretch relative w-full md:w-3/4 min-w-0">
+							<div className="flex flex-col sm:items-center items-stretch relative w-full md:w-3/4 min-w-0">
 								{activeSection === "favorites" ? (
 									<Favs
 										favorites={favorites}

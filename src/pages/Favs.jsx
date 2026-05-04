@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import AnimatedButton from "shared-components/AnimatedButton";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
@@ -40,7 +40,7 @@ const Favs = ({
 
 	return (
 		<RedirectToSignInIfSignedOut>
-			<div className="flex justify-center my-4">
+			<div className="flex justify-center my-4 ">
 				{favorites.length > 0 && (
 					<button onClick={() => setOpenDeleteModal(true)}>
 						<AnimatedButton
@@ -69,13 +69,14 @@ const Favs = ({
 			) : (
 				<div className="flex items-center w-full min-w-0">
 					<button
-						className="fav-swiper-button-prev text-fontColor md:text-4xl text-2xl mr-2 cursor-pointer shrink-0"
+						className="fav-swiper-button-prev text-fontColor md:text-4xl text-2xl mr-0 sm:mr-2 cursor-pointer shrink-0"
 						onClick={() => swiperRef.current?.slidePrev()}></button>
-					<div className="flex w-full overflow-hidden min-w-0">
+					<div className="flex w-full min-w-0">
 						<Swiper
+							// className="w-full overflow-hidden"
 							loop={favorites.length > 1}
-							slidesPerView="auto"
-							spaceBetween={3}
+							slidesPerView={"auto"}
+							spaceBetween={0}
 							modules={[Pagination]}
 							pagination={{ clickable: true }}
 							onSwiper={(swiper) => {

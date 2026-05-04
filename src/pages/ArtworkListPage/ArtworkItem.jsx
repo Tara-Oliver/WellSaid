@@ -94,7 +94,7 @@ const ArtworkItem = ({
 				</div>
 			</div>
 
-			<div className="flex justify-between ">
+			<div className="flex justify-between">
 				<div className="text-fontColor ">
 					{artwork.images[imageIdx].frame_color}
 				</div>
