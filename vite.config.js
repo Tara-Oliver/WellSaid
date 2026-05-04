@@ -6,4 +6,12 @@ import jsconfigPaths from "vite-jsconfig-paths";
 export default defineConfig({
 	plugins: [react(), jsconfigPaths()],
 	base: "/",
+	server: {
+		proxy: {
+			"/api": {
+				target: "http://localhost:3000",
+				rewrite: (path) => path.replace(/^\/api/, ""),
+			},
+		},
+	},
 });
