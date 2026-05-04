@@ -1,5 +1,5 @@
 import { getSessionTokenStorage } from "services/user";
-const { VITE_API_BASE_URL } = import.meta.env;
+
 const apiFetch = (method, path, body = null) => {
 	const options = {
 		method,
@@ -9,7 +9,6 @@ const apiFetch = (method, path, body = null) => {
 		},
 	};
 
-	console.log(VITE_API_BASE_URL);
 	const sessionToken = getSessionTokenStorage();
 
 	if (sessionToken) {
@@ -20,7 +19,7 @@ const apiFetch = (method, path, body = null) => {
 		options.body = JSON.stringify(body);
 	}
 
-	return fetch(VITE_API_BASE_URL + path, options);
+	return fetch("/api" + path, options);
 };
 
 export default apiFetch;
