@@ -73,7 +73,7 @@ const CartModal = ({ handleClose }) => {
 								key={cartItem.cart_item_id}
 								className={clsx(
 									"mx-4",
-									idx !== 0 && "border-t border-neutral-200"
+									idx !== 0 && "border-t border-neutral-200",
 								)}>
 								<CartItem
 									cartItem={cartItem}
@@ -87,7 +87,7 @@ const CartModal = ({ handleClose }) => {
 				<div
 					className={clsx(
 						"text-neutral-500 flex flex-col mx-5  items-center",
-						cart.length > 0 && !cartIsEditing && "border-t-2 border-fontColor"
+						cart.length > 0 && !cartIsEditing && "border-t-2 border-fontColor",
 					)}>
 					{cart.length === 0 ? (
 						<Link to="/artwork" onClick={handleClose}>
@@ -99,7 +99,18 @@ const CartModal = ({ handleClose }) => {
 								hoverBg={"bg-fontColor"}
 								pyVal={"py-3"}
 								hoverText={"group-hover:text-bkgrd"}
-								icon={<i className="fas fa-long-arrow-alt-right"></i>}
+								icon={
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="28"
+										height="28"
+										viewBox="0 0 24 24">
+										<path
+											fill="currentColor"
+											d="M15.835 11.63L9.205 5.2C8.79 4.799 8 5.042 8 5.57v12.86c0 .528.79.771 1.205.37l6.63-6.43a.5.5 0 0 0 0-.74"
+										/>
+									</svg>
+								}
 							/>
 						</Link>
 					) : !cartIsEditing ? (
@@ -109,7 +120,8 @@ const CartModal = ({ handleClose }) => {
 									{`${totalItems} item${totalItems === 1 ? "" : "s"}`}{" "}
 								</div>
 								<div className="">
-									subtotal: <span className="">${subtotal.toFixed(2)}</span>{" "}
+									subtotal:{" "}
+									<span className="">${subtotal.toFixed(2)}</span>{" "}
 								</div>
 							</div>
 
@@ -123,7 +135,18 @@ const CartModal = ({ handleClose }) => {
 										hoverBg={"bg-fontColor"}
 										hoverText={"group-hover:text-bkgrd"}
 										pyVal={"py-3 w-full"}
-										icon={<i className="fas fa-long-arrow-alt-right"></i>}
+										icon={
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="28"
+												height="28"
+												viewBox="0 0 24 24">
+												<path
+													fill="currentColor"
+													d="M15.835 11.63L9.205 5.2C8.79 4.799 8 5.042 8 5.57v12.86c0 .528.79.771 1.205.37l6.63-6.43a.5.5 0 0 0 0-.74"
+												/>
+											</svg>
+										}
 									/>
 								</Link>
 								<Link to="/checkout" onClick={handleClose} className="flex-1">
